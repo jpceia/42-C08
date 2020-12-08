@@ -6,11 +6,12 @@
 /*   By: jceia <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/07 01:07:53 by jceia             #+#    #+#             */
-/*   Updated: 2020/12/07 01:26:55 by jceia            ###   ########.fr       */
+/*   Updated: 2020/12/08 07:53:47 by jceia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_stock_str.h"
+#include <unistd.h>
 
 void	ft_putchar(char c)
 {
@@ -27,12 +28,12 @@ void	ft_putnbr(int nb)
 {
 	if (nb < 0)
 	{
-		print('-');
+		ft_putchar('-');
 		if (nb == -2147483648)
 		{
 			nb = nb / 10;
 			ft_putnbr(-nb);
-			print('8');
+			ft_putchar('8');
 		}
 		else
 			ft_putnbr(-nb);
@@ -41,7 +42,7 @@ void	ft_putnbr(int nb)
 	{
 		if (nb > 9)
 			ft_putnbr(nb / 10);
-		print('0' + nb % 10);
+		ft_putchar('0' + nb % 10);
 	}
 }
 

@@ -5,15 +5,25 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jceia <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/07 00:44:31 by jceia             #+#    #+#             */
-/*   Updated: 2020/12/07 01:07:29 by jceia            ###   ########.fr       */
+/*   Created: 2020/12/08 07:36:40 by jceia             #+#    #+#             */
+/*   Updated: 2020/12/08 07:56:20 by jceia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_stock_str.h"
 #include <stdlib.h>
 
-char	*ft_strdup(char *src)
+int					ft_strlen(char *str)
+{
+	int	index;
+
+	index = 0;
+	while (str[index])
+		index++;
+	return (index);
+}
+
+char				*ft_strdup(char *src)
 {
 	unsigned int	index;
 	char			*dest;
@@ -32,41 +42,28 @@ char	*ft_strdup(char *src)
 	return (dest);
 }
 
-int		ft_strlen(char *str)
-{
-	int	index;
-
-	index = 0;
-	while (str[index])
-		index++;
-	return (index);
-}
-
 struct s_stock_str	create_stock_str(char *str)
 {
-	struct s_stock_str a;
-	
-	a.size = ft_strlen(str);
-	a.str = str;
-	a.copy = ft_strdup(str);
-	return (a);
+	struct s_stock_str s;
+
+	s.size = ft_strlen(str);
+	s.str = str;
+	s.copy = ft_strdup(str);
+	return (s);
 }
 
-struct s_stock_str
-		*ft_strs_to_tab(int ac, char **av)
+struct s_stock_str	*ft_strs_to_tab(int ac, char **av)
 {
 	int					index;
-	struct 	s_stock_str	*ptr;
+	struct s_stock_str	*arr;
 
-	ptr = malloc(sizeof(struct s_stock_str) * (ac + 1));
-	if (!ptr)
-		return (NULL);
+	arr = malloc(sizeof(struct s_stock_str) * (ac + 1));
+	arr[ac].str = 0;
 	index = 0;
 	while (index < ac)
 	{
-		ptr[index] = create_stock_str(av[index]);
+		arr[index] = create_stock_str(av[index]);
 		index++;
 	}
-	ptr[ac].str = 0;
-	return (ptr);
+	return (arr);
 }
