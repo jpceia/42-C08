@@ -6,7 +6,7 @@
 /*   By: jceia <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/08 07:36:40 by jceia             #+#    #+#             */
-/*   Updated: 2020/12/08 07:56:20 by jceia            ###   ########.fr       */
+/*   Updated: 2020/12/08 08:36:34 by jceia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ struct s_stock_str	*ft_strs_to_tab(int ac, char **av)
 	struct s_stock_str	*arr;
 
 	arr = malloc(sizeof(struct s_stock_str) * (ac + 1));
+	if (arr == NULL)
+		return (NULL);
 	arr[ac].str = 0;
 	index = 0;
 	while (index < ac)
